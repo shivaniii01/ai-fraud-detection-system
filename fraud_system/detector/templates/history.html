@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Transaction History</title>
+    <style>
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: #eef2f7;
+            padding: 30px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        th,
+        td {
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background: #203a43;
+            color: white;
+        }
+
+        .fraud {
+            color: #b00020;
+            font-weight: bold;
+        }
+
+        .safe {
+            color: #0a7d2c;
+            font-weight: bold;
+        }
+
+        a {
+            display: block;
+            margin-top: 20px;
+            text-align: center;
+            text-decoration: none;
+            color: #0f62fe;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Transaction History</h2>
+
+    <table>
+        <tr>
+            <th>Amount (₹)</th>
+            <th>Risk Score (%)</th>
+            <th>Status</th>
+            <th>Date & Time</th>
+        </tr>
+
+        {% for t in transactions %}
+        <tr>
+            <td>{{ t.amount }}</td>
+            <td>{{ t.risk_score|floatformat:2 }}</td>
+            <td>
+                {% if t.is_fraud %}
+                <span class="fraud">Fraud</span>
+                {% else %}
+                <span class="safe">Safe</span>
+                {% endif %}
+            </td>
+            <td>{{ t.created_at }}</td>
+
+        </tr>
+        {% endfor %}
+    </table>
+
+    <a href="/">← Back to Home</a>
+
+</body>
+
+</html>

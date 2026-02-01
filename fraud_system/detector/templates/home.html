@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>AI Fraud Detection System</title>
+
+    <style>
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card {
+            background: white;
+            width: 520px;
+            padding: 35px;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+            animation: fadeUp 0.7s ease-out;
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: #444;
+            font-size: 15px;
+            margin-bottom: 25px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 12px;
+            margin-top: 12px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 15px;
+        }
+
+        input:focus,
+        select:focus {
+            outline: none;
+            border: 1px solid #0f62fe;
+            box-shadow: 0 0 8px rgba(15, 98, 254, 0.4);
+            transition: 0.2s;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 20px;
+            padding: 14px;
+            background: #0f62fe;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        button:active {
+            transform: translateY(0);
+            box-shadow: none;
+        }
+
+        .links {
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        .links a {
+            margin: 0 8px;
+            text-decoration: none;
+            color: #0f62fe;
+        }
+
+        .footer {
+            margin-top: 18px;
+            font-size: 13px;
+            color: #666;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="card">
+        <h1>AI Fraud Detection System</h1>
+        <p>
+            An intelligent banking security system that uses Machine Learning
+            to detect suspicious transactions and assign real-time risk scores.
+        </p>
+
+        <form method="POST" action="/predict/">
+            {% csrf_token %}
+
+            <input type="number" step="0.01" name="amount" placeholder="Enter transaction amount (₹)" required>
+
+            <select name="txn_type" required>
+                <option value="">Select Transaction Type</option>
+                <option value="Online">Online</option>
+                <option value="ATM">ATM</option>
+                <option value="POS">POS</option>
+            </select>
+
+            <select name="txn_time" required>
+                <option value="">Select Transaction Time</option>
+                <option value="Day">Day</option>
+                <option value="Night">Night</option>
+            </select>
+
+            <button type="submit">Analyze Transaction</button>
+        </form>
+
+        <div class="links">
+            <a href="/history/">View Transaction History</a> |
+            <a href="/analytics/">View Analytics Dashboard</a> |
+            <a href="/architecture/">View System Architecture</a>
+        </div>
+
+        <div class="footer">
+            TRL-5 | ML-Based | Real-Time Risk Analysis
+        </div>
+    </div>
+
+</body>
+
+</html>

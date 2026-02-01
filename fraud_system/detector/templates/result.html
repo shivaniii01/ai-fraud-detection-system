@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Fraud Analysis Result</title>
+
+    <style>
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: #eef2f7;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card {
+            background: white;
+            width: 520px;
+            padding: 35px;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            animation: fadeUp 0.6s ease-out;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .fraud {
+            color: #b00020;
+            font-weight: bold;
+            font-size: 22px;
+            text-align: center;
+        }
+
+        .safe {
+            color: #0a7d2c;
+            font-weight: bold;
+            font-size: 22px;
+            text-align: center;
+        }
+
+        .info {
+            margin-top: 14px;
+            font-size: 15px;
+        }
+
+        .label {
+            font-weight: bold;
+        }
+
+        .risk-bar {
+            margin-top: 12px;
+            height: 14px;
+            background: #ddd;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .risk-fill {
+            height: 100%;
+            background: linear-gradient(to right, #0a7d2c, #ff9800, #b00020);
+
+            width: {
+                    {
+                    risk
+                }
+            }
+
+            %;
+            transition: width 1.2s ease-in-out;
+        }
+
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 18px;
+            text-decoration: none;
+            color: #0f62fe;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 13px;
+            color: #666;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="card">
+        <h2>Transaction Analysis Result</h2>
+
+        {% if is_fraud %}
+        <div class="fraud">⚠ Fraud Detected</div>
+        {% else %}
+        <div class="safe">✅ Transaction Safe</div>
+        {% endif %}
+
+        <div class="info"><span class="label">Amount:</span> ₹ {{ amount }}</div>
+        <div class="info"><span class="label">Risk Score:</span> {{ risk }}%</div>
+        <div class="info"><span class="label">Risk Level:</span> {{ risk_level }}</div>
+
+        <div class="risk-bar">
+            <div class="risk-fill"></div>
+        </div>
+
+        <div class="info"><span class="label">Transaction Type:</span> {{ txn_type }}</div>
+        <div class="info"><span class="label">Transaction Time:</span> {{ txn_time }}</div>
+        <div class="info"><span class="label">Detection Reason:</span> {{ reason }}</div>
+        <div class="info"><span class="label">Model Used:</span> {{ model_info }}</div>
+
+        <a href="/">Analyze another transaction</a>
+        <a href="/analytics/">View Analytics Dashboard</a>
+
+        <div class="footer">
+            Real-Time AI Fraud Analysis | TRL-5 Validated Prototype
+        </div>
+    </div>
+
+</body>
+
+</html>
